@@ -1,13 +1,10 @@
 import { ethers } from "hardhat";
 
 async function main() {
-
-  const Transactions = await ethers.getContractFactory("Transactions")
-  const transactions = await Transactions.deploy()
-  
-  await transactions.deployed();
-  
-  console.log("Transactions deployed to: ", transactions.address);
+  const KafToken = await ethers.getContractFactory("KafToken")
+  const kafToken = await KafToken.deploy();
+  await kafToken.deployed();
+  console.log("Token deployed to: ", kafToken.address)
 }
 
 // We recommend this pattern to be able to use async/await everywhere
