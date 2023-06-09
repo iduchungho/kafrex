@@ -13,9 +13,16 @@ describe('KafToken', () => {
     describe("DeployToken", () => {
         it("Should mint a new token", async () => {
             const {sender, receiver, kafToken} = await loadFixture(deployToken);
-            await kafToken.awardItem(sender.address, "https://token-uri.com");
+            await kafToken.mint(sender.address, "https://token-uri.com");
             const tokenID = await kafToken.getTokenID();
             expect(await kafToken.ownerOf(tokenID)).to.equal(sender.address);
+        })
+
+        it("Should get a tokenID", async () => {
+            const {sender, receiver, kafToken} = await loadFixture(deployToken);
+            await kafToken.mint(sender.address, "https://token-uri.com");
+            const tokenID = await kafToken.getTokenID();
+            expect(tokenID).to.equal(0);
         })
     })
 })
