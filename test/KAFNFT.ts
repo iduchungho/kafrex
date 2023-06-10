@@ -4,7 +4,7 @@ import { ethers } from 'hardhat';
 
 describe('KafToken', () => { 
     const deployToken = async () => {
-        const KafToken = await ethers.getContractFactory("KafToken");
+        const KafToken = await ethers.getContractFactory("KAFNFT");
         const kafToken = await KafToken.deploy()
         const [sender, receiver] = await ethers.getSigners();
         return {sender, receiver, kafToken}
@@ -18,11 +18,12 @@ describe('KafToken', () => {
             expect(await kafToken.ownerOf(tokenID)).to.equal(sender.address);
         })
 
-        it("Should get a tokenID", async () => {
+        it("Should transfer a tokenID", async () => {
             const {sender, receiver, kafToken} = await loadFixture(deployToken);
             await kafToken.mint(sender.address, "https://token-uri.com");
             const tokenID = await kafToken.getTokenID();
-            expect(tokenID).to.equal(0);
+            await kafToken.transfer(sender.address, receiver.address, tokenID)
+            expect(await kafToken.ownerOf(tokenID)).to.equal(receiver.address);
         })
     })
 })

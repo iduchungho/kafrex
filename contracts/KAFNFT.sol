@@ -6,11 +6,12 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 import "hardhat/console.sol";
 
-contract KafToken is ERC721URIStorage {
+contract KAFNFT is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
+    address payable private _sender;
 
-    constructor() ERC721("Kafrex", "KAF") {}
+    constructor() ERC721("KAFNFT", "KNT") {}
 
     event Transfers(address indexed sender, address indexed receiver, uint256);
 
@@ -27,13 +28,9 @@ contract KafToken is ERC721URIStorage {
     }
 
     function transfer(address from, address to, uint256 tokenID) public {
-        approveAddr(from, tokenID);
-        transferFrom(from, to, tokenID);
-        emit Transfer(from, to, tokenID);
-    }
-
-    function approveAddr(address from, uint256 tokenID) public {
         require(ownerOf(tokenID) == from, "You don't own this NFTs");
         _approve(msg.sender, tokenID);
+        transferFrom(from, to, tokenID);
+        emit Transfer(from, to, tokenID);
     }
 }
