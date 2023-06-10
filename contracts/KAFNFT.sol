@@ -11,7 +11,7 @@ contract KAFNFT is ERC721URIStorage {
     Counters.Counter private _tokenIds;
     address payable private _sender;
 
-    constructor() ERC721("KAFNFT", "KNT") {}
+    constructor() ERC721("Kafrexs", "KNT") {}
 
     event Transfers(address indexed sender, address indexed receiver, uint256);
 
