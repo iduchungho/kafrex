@@ -13,7 +13,7 @@ contract KAFNFT is ERC721URIStorage {
 
     constructor() ERC721("Kafrexs", "KNT") {}
 
-    event Transfers(address indexed sender, address indexed receiver, uint256);
+    event Transfers(address indexed sender, address indexed receiver, uint256 tokenID);
 
     function mint(address player, string memory tokenURI) public {
         uint256 newItemId = _tokenIds.current();

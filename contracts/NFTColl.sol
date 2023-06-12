@@ -27,6 +27,7 @@ contract NFTColl {
         require(kafnfts.ownerOf(tokenID) == msg.sender, "transfer: You don't own this NFT");
         kafnfts.transfer(msg.sender, to, tokenID);
         nfts[tokenID] = kafnfts.ownerOf(tokenID);
+        emit Transfer(msg.sender, to, tokenID);
     }
 
 }

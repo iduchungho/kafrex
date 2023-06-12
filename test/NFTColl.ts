@@ -43,10 +43,6 @@ describe('Kafrex NFT Collection', () => {
             await nftColl.addNFT(tokenID1)
             await nftColl.addNFT(tokenID2)
 
-            // console.log("owner: ", owner.address)
-            // console.log("addr1: ", addr1.address)
-            // console.log("addr2: ", addr2.address)
-
 
             await nftColl.connect(owner).transfer(addr1.address, tokenID1)
             await nftColl.connect(owner).transfer(addr2.address, tokenID2)
